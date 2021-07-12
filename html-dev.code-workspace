@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"[html]": {
+			"editor.suggest.insertMode": "replace",
+			"gitlens.codeLens.scopes": [
+				"document"
+			],
+			"files.encoding": "utf8",
+		},
+		"editor.formatOnPaste": false,
+		"csscomb.formatOnSave": true,
+		"csscomb.preset": "mycsscomb.json",
+		"csscomb.syntaxAssociations": {
+			"postcss": "scss"
+		}
+	}
+}

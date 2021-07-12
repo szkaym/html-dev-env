@@ -1,0 +1,27 @@
+@charset "utf8";
+@import "mixin";
+
+/**
+ * mixin 利用方法
+ */
+.example {
+    // すべてのコンテンツ幅で適用する
+    color: #000;
+
+    @include w425() {
+        // 画面幅が 最大 428px 迄 のデバイスに適用する
+        content: "max-width: 425px";
+    }
+    @include w768() {
+        // 画面幅が 768px までのときに適用されるスタイル
+        content: "min-width: 768px";
+    }
+    @include w1024() {
+        // 画面幅が 1024px までのときに適用されるスタイル
+        content: "min-width: 1024px";
+    }
+    @include w1366() {
+        // 画面幅が 1366px までのときに適用されるスタイル
+        content: "min-width: 1366px";
+    }
+}

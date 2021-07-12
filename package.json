@@ -1,0 +1,28 @@
+{
+    "name": "html-envelop",
+    "version": "1.0.0",
+    "description": "",
+    "main": "",
+    "devDependencies": {
+        "browser-sync": "^2.27.4",
+        "css-mqpacker": "^7.0.0",
+        "gulp": "^4.0.2",
+        "gulp-postcss": "^9.0.0",
+        "gulp-rename": "^2.0.0",
+        "gulp-sass": "^5.0.0",
+        "gulp-watch": "^5.0.1",
+        "node-sass": "^6.0.1",
+        "postcss": "^8.3.5",
+        "postcss-sort-media-queries": "^3.11.12",
+        "sass": "^1.35.1"
+    },
+    "scripts": {
+        "run": "npx gulp",
+        "watch": "npx gulp watch",
+        "serve": "browser-sync start --server --config bs-config.js",
+        "serve_": "node_modules/.bin/browser-sync start --server src --files *"
+    },
+    "author": "",
+    "license": "ISC",
+    "private": "true"
+}

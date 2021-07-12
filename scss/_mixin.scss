@@ -1,0 +1,29 @@
+
+$w425: 425px; // スマホ
+$w768: 768px; // タブレット縦
+$w1024: 1024px; // タブレット横
+$w1366: 1366px;  // PC
+
+@mixin w425 {
+    @media (max-width: ($w425)) {
+        @content;
+    }
+}
+
+@mixin w768 {
+    @media (min-width: ($w768)) {
+        @content;
+    }
+}
+
+@mixin w1024 {
+    @media (min-width: ($w1024)) {
+        @content;
+    }
+}
+
+@mixin w1366 {
+    @media (min-width: ($w1366)) {
+        @content;
+    }
+}
