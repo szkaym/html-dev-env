@@ -62,3 +62,11 @@ module.exports = {
     ]
 }
 ```
+
+## 利用方法
+
+one command.
+
+```txt
+npm run watch
+```
