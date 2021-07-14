@@ -11,8 +11,9 @@ var typescript = require('gulp-typescript');
 var planner = require('gulp-plumber');
 
 var config = require('./config.js');
+var routes = require('./api/routes.js');
 
-function sass() {
+gulp.task('sass', () => {
     return gulp.src(config.scss, { base: '' })
         .pipe(planner())
         .pipe(sass({ outputStyle: 'expanded' }))
@@ -31,10 +32,10 @@ function sass() {
             }
             return config.css_dist;
         }));
-}
-exports.default = sass;
+});
+gulp.task('sass', gulp.task('sass'));
 
-function ts() {
+gulp.task('ts', () => {
     //node_modules配下は除外する
     let tsSrc = config.ts;
     tsSrc.push(...['!./node_modules/**']);
@@ -51,19 +52,25 @@ function ts() {
             }
             return config.js_dist;
         }));
-}
-exports.ts = ts;
+});
+gulp.task('ts', gulp.task('ts'));
 
 gulp.task('watch', () => {
     browserSync.init({
         files: "*",
         server: config.document_root,
-        startPath: config.start_page
+        startPath: config.start_page,
+        middleware: routes
     });
 
-    gulp.watch(config.scss, gulp.task('sass')).on('change', browserSync.reload);
-    gulp.watch(config.html).on('change', browserSync.reload);
-    gulp.watch(config.ts, gulp.task('ts')).on('change', browserSync.reload);
+    gulp.watch(config.watch_files).on('change', browserSync.reload);
+
+    if (config.scss_compile) {
+        gulp.watch(config.scss, gulp.task('sass')).on('change', browserSync.reload);
+    }
+    if (config.ts_compile) {
+        gulp.watch(config.ts, gulp.task('ts')).on('change', browserSync.reload);
+    }
 
     return;
 });

@@ -3,6 +3,9 @@
     "version": "1.0.0",
     "description": "",
     "main": "",
+    "dependencies": {
+        "axios": "^0.21.1"
+    },
     "devDependencies": {
         "browser-sync": "^2.27.4",
         "css-mqpacker": "^7.0.0",

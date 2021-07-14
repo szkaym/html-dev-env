@@ -1,9 +1,24 @@
 
 module.exports = {
+    api_root: 'https://localhost',
 
     document_root: "src",
 
     start_page: "/index.html",
+
+    /**
+     * 監視対象のSCSSファイル以外のパス
+     */
+     watch_files: [
+        "src/*.html",
+        "src/**/*.html",
+        "src/*.js",
+        "src/**/*.js",
+        "src/*.php",
+        "src/**/*.php"
+    ],
+
+    scss_compile: true,
 
     /**
      * scssからみた相対パスで書き出しする場合に記述します
@@ -26,6 +41,8 @@ module.exports = {
         "src/**/*.sass",
     ],
 
+    ts_compile: false,
+
     /**
      * scssからみた相対パスで書き出しする場合に記述します
      * ex）js_sibling_dist: "/../js"
@@ -36,6 +53,16 @@ module.exports = {
      *  単一ファイルの場合はここに記述、
      */
     js_dist: 'src/js',
+
+    /**
+     * 監視対象のSCSSファイルパス
+     */
+     ts: [
+        'ts/*.ts',
+        'ts/**/*.ts',
+        "src/**/*.ts",
+        "src/**/*.ts",
+    ],
 
     ts_options: {
         //（string）1つのjavascriptと1つの定義ファイルを生成します。モジュールシステムが使用されていない場合にのみ機能します。
@@ -52,22 +79,26 @@ module.exports = {
 
         //（boolean）インデックス署名のないオブジェクトにインデックスを付けるための --noImplicitAny エラーを抑制します。
         suppressImplicitAnyIndexErrors: false,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
 
         //（boolean）デフォルトのlibを含めない（-Array、Dateなどの定義を含む）
         // noLib: true,
 
         //（string []）コンパイルに含まれるライブラリファイルのリスト。
         lib: [
-            'ES6',
-            'es2015',
-            'dom'
+            "esnext",
+            "dom",
+            "dom.iterable",
+            "scripthost"
         ],
 
         //（文字列）ECMAScriptターゲットバージョンを指定します：「ES3」（デフォルト）、「ES5」または「ES6」。
         target: "esnext",
 
         //（string）モジュールコード生成を指定します：「commonjs」、「amd」、「umd」、または「system」。
-        module: "commonjs",
+        module: "esnext",
 
         //（文字列）jsxコード生成を指定します：「react」または「preserve」（TS1.6 +）。
         jsx: "preserve",
@@ -76,7 +107,7 @@ module.exports = {
         declaration: false,
 
         //（boolean）出力にコメントを出力しません。
-        removeComments: true,
+        removeComments: false,
 
         //（boolean）ソース内のデコレータのメタデートを発行します。
         emitDecoratorMetadata: false,
@@ -88,13 +119,13 @@ module.exports = {
         experimentalDecorators: false,
 
         //（string）モジュールがどのように解決されるかを決定します。 Node.js / io.jsスタイルの解像度の場合は「node」、または「classic」（デフォルト）（TS1.6 +）のいずれか。
-        moduleResolution: "classic",
+        moduleResolution: "es2015",
 
         //（boolean）型チェックでエラーが報告された場合、コンパイルしません。
         noEmitOnError: true,
 
         //（boolean）コンパイルされた出力で__extendsのようなカスタムヘルパー関数を生成しません。
-        noEmitHelpers: true,
+        noEmitHelpers: false,
 
         //（boolean）生成されたコードのconstenum宣言を消去しません。
         // keepConstEnums: true,
@@ -104,26 +135,5 @@ module.exports = {
 
         //（boolean）JavaScriptファイルのコンパイルを許可します。
         allowJs: false,
-    },
-
-    /**
-     * 監視対象のSCSSファイルパス
-     */
-    ts: [
-        'ts/*.ts',
-        'ts/**/*.ts',
-        "src/**/*.ts",
-        "src/**/*.ts",
-    ],
-
-    /**
-     * 監視対象のSCSSファイル以外のパス
-     */
-    html: [
-        "src/*.html",
-        "src/**/*.html",
-        "src/*.js",
-        "src/**/*.js",
-        "src/**/*.php"
-    ]
+    }
 }
