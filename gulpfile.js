@@ -55,6 +55,10 @@ gulp.task('ts', () => {
 });
 gulp.task('ts', gulp.task('ts'));
 
+gulp.task('watch_files', () => {
+    return gulp.src(config.watch_files, { base: '' })
+})
+
 gulp.task('watch', () => {
     browserSync.init({
         files: "*",
@@ -63,7 +67,7 @@ gulp.task('watch', () => {
         middleware: routes
     });
 
-    gulp.watch(config.watch_files).on('change', browserSync.reload);
+    gulp.watch(config.watch_files, gulp.task('watch_files')).on('change', browserSync.reload);
 
     if (config.scss_compile) {
         gulp.watch(config.scss, gulp.task('sass')).on('change', browserSync.reload);
