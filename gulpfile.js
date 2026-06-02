@@ -2,11 +2,10 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 
-var sass = require('gulp-sass')(require('node-sass'));
+var sass = require('gulp-sass')(require('sass'));
 var rename = require('gulp-rename');
 var postcss = require('gulp-postcss');
 var sortMediaQueries = require('postcss-sort-media-queries');
-var mqpacker = require('css-mqpacker');
 var typescript = require('gulp-typescript');
 var planner = require('gulp-plumber');
 
@@ -14,11 +13,10 @@ var config = require('./config.js');
 var routes = require('./api/routes.js');
 
 gulp.task('sass', () => {
-    return gulp.src(config.scss, { base: '' })
+    return gulp.src(config.scss, { base: '', allowEmpty: true })
         .pipe(planner())
         .pipe(sass({ outputStyle: 'expanded' }))
         .pipe(postcss([
-            mqpacker(),
             sortMediaQueries()
         ]))
         .pipe(rename(function (path) {
@@ -39,7 +37,7 @@ gulp.task('ts', () => {
     //node_modules配下は除外する
     let tsSrc = config.ts;
     tsSrc.push(...['!./node_modules/**']);
-    return gulp.src(tsSrc)
+    return gulp.src(tsSrc, { allowEmpty: true })
         .pipe(typescript(config.ts_options))
         .pipe(rename(function (path) {
             if (config.js_sibling_dist) {
@@ -56,7 +54,7 @@ gulp.task('ts', () => {
 gulp.task('ts', gulp.task('ts'));
 
 gulp.task('watch_files', () => {
-    return gulp.src(config.watch_files, { base: '' })
+    return gulp.src(config.watch_files, { base: '', allowEmpty: true })
 })
 
 gulp.task('watch', () => {

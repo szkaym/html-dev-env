@@ -9,7 +9,7 @@ module.exports = {
     /**
      * 監視対象のSCSSファイル以外のパス
      */
-     watch_files: [
+    watch_files: [
         "src/*.html",
         "src/**/*.html",
         "src/*.js",
@@ -36,7 +36,6 @@ module.exports = {
      */
     scss: [
         'scss/*.scss',
-        'sass/**/*.sass',
         "src/**/*.scss",
         "src/**/*.sass",
     ],
@@ -47,7 +46,7 @@ module.exports = {
      * scssからみた相対パスで書き出しする場合に記述します
      * ex）js_sibling_dist: "/../js"
      */
-     js_sibling_dist: null,
+    js_sibling_dist: null,
 
     /**
      *  単一ファイルの場合はここに記述、
@@ -57,7 +56,7 @@ module.exports = {
     /**
      * 監視対象のSCSSファイルパス
      */
-     ts: [
+    ts: [
         'ts/*.ts',
         'ts/**/*.ts',
         "src/**/*.ts",
